@@ -1,0 +1,7 @@
+{
+  "name": "node-paper-reporting",
+  "main": "index.js",
+  "dependencies": {
+    "paper-jsdom": "^0.12.15"
+  }
+}
