@@ -1,17 +1,29 @@
-var http = require("http");
 var renderer = require("./renderer");
+var express = require("express");
 
-http
-  .createServer(function (request, response) {
-    // Send the HTTP header
-    // HTTP Status: 200 : OK
-    // Content Type: image/svg+xml
-    response.writeHead(200, { "Content-Type": "image/svg+xml" });
+var app = express();
+var host = "http://localhost";
+var port = 3000;
 
-    // Send the response body as "Hello World"
-    response.end(renderer.renderLine());
-  })
-  .listen(8081);
+app.get("/test", (req, res, next) => {
+  res.json({
+    greetings: [
+      "hola",
+      "buenas",
+      "¿qué hay?",
+      "¿qué tal andas?",
+      "¿qué marcha me llevas?",
+    ],
+  });
+});
+console.log(`Endpoint GET: ${host}:${port}/test`);
 
-// Console will print the message
-console.log("Server running at http://127.0.0.1:8081/");
+app.get("/line", (req, res, next) => {
+  res.writeHead(200, { "Content-Type": "image/svg+xml" });
+  res.end(renderer.renderLine());
+});
+console.log(`Endpoint GET: ${host}:${port}/line`);
+
+app.listen(port, () => {
+  console.log(`Server running at ${host}:${port}/`);
+});

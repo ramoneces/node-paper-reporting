@@ -2,6 +2,7 @@
   "name": "node-paper-reporting",
   "main": "index.js",
   "dependencies": {
+    "express": "^4.17.1",
     "paper-jsdom": "^0.12.15"
   }
 }
