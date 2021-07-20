@@ -58,6 +58,46 @@ export const ellipse = async (): Promise<string> => {
   return svg;
 };
 
+export const polygon = async (sides: number): Promise<string> => {
+  const size = setupProject();
+
+  new paper.Path.RegularPolygon({
+    center: new paper.Point(size.width * 0.5, size.height * 0.5),
+    radius: size.width * 0.25,
+    sides: sides,
+    fillColor: FILL_COLOR,
+    strokeColor: STROKE_COLOR,
+    strokeWidth: STROKE_WIDTH,
+  });
+
+  const svg = paper.project.exportSVG({ asString: true }) as string;
+
+  saveFile(svg, "Polygon");
+
+  return svg;
+};
+
+export const star = async (points: number): Promise<string> => {
+  const size = setupProject();
+
+  new paper.Path.Star({
+    center: new paper.Point(size.width * 0.5, size.height * 0.5),
+    radius1: size.width * 0.25,
+    radius2: size.width * 0.1,
+    points: points,
+    fillColor: FILL_COLOR,
+    strokeColor: STROKE_COLOR,
+    strokeWidth: STROKE_WIDTH,
+    strokeJoin: "round",
+  });
+
+  const svg = paper.project.exportSVG({ asString: true }) as string;
+
+  saveFile(svg, "Star");
+
+  return svg;
+};
+
 /**
  * Private methods
  */

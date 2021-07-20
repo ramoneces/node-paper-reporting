@@ -1,4 +1,9 @@
 import winston from "winston";
+import * as dotenv from "dotenv";
+
+dotenv.config();
+
+const LOG_FILE_PATH = process.env.LOG_FILE_PATH as string;
 
 const consoleFormat = winston.format.combine(
   winston.format.colorize({
@@ -8,7 +13,7 @@ const consoleFormat = winston.format.combine(
     format: "HH:MM:SS",
   }),
   winston.format.printf(
-    (info) => `[${info.level}] ${info.timestamp} : ${info.message}`
+    (info) => `[${info.level}] ${info.timestamp} ${info.message}`
   )
 );
 
@@ -18,7 +23,7 @@ const fileFormat = winston.format.combine(
     format: "YYYY-MM-DD HH:MM:SS",
   }),
   winston.format.printf(
-    (info) => `[${info.level}] ${info.timestamp} : ${info.message}`
+    (info) => `[${info.level}] ${info.timestamp} ${info.message}`
   )
 );
 
@@ -28,6 +33,9 @@ export default winston.createLogger({
     new winston.transports.Console({
       format: consoleFormat,
     }),
-    new winston.transports.File({ filename: "server.log", format: fileFormat }),
+    new winston.transports.File({
+      filename: LOG_FILE_PATH,
+      format: fileFormat,
+    }),
   ],
 });
