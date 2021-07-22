@@ -112,9 +112,13 @@ const setupProject = (): paper.Size => {
   return size;
 };
 
-const saveFile = (svg: string, name: string): string => {
-  const fileName = `${name}_${new Date().valueOf()}.svg`;
+const saveFile = (svg: string, type: string): string => {
+  const dirName = `generated_shapes/${type}`;
+  fs.mkdirSync(dirName, { recursive: true });
+
+  const fileName = `${dirName}/${new Date().valueOf()}.svg`;
   fs.writeFileSync(fileName, svg);
+
   logger.info(`'${fileName}' file created.`);
   return fileName;
 };

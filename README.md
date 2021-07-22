@@ -2,7 +2,7 @@
 
 Node js with TypeScript api example from [here](https://auth0.com/blog/node-js-and-typescript-tutorial-build-a-crud-api).
 
-# Example api queries
+# Example items api queries
 
 ## Get all items:
 
@@ -68,6 +68,13 @@ curl http://localhost:7000/api/menu/items/ -i
 curl http://localhost:7000/employees/ -i
 ```
 
-# Example client application
+## Example client application
 
 [Here](https://dashboard.whatabyte.app/)
+
+# Example shapes api queries
+
+http://localhost:7000/api/drawing/shapes/rectangle
+http://localhost:7000/api/drawing/shapes/ellipse
+http://localhost:7000/api/drawing/shapes/polygon/5
+http://localhost:7000/api/drawing/shapes/star/5
